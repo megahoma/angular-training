@@ -12,5 +12,7 @@
   </div>
 
   <p>Total: {{ count$ | async }}</p>
-  <p>Update Date: {{ updateDate | date: "HH:MM:SS" }}</p>
+  <p *ngIf="updateDate$ | async">
+    Update Date: {{ updateDate$ | async | date: "HH:MM:SS" }}
+  </p>
 </div>

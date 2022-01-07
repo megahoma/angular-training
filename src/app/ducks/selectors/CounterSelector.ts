@@ -7,3 +7,8 @@ export const countSelector = createSelector(
   featureSelector,
   (state) => state.count
 );
+
+export const updateDateSelector = createSelector(
+  featureSelector,
+  (state) => state.updateDate
+);
