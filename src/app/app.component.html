@@ -1,1 +1,15 @@
-<div>Hello World</div>
+<!-- counter -->
+<div class="counter">
+  <div class="counter__button">
+    <button class="counter__button" (click)="increase()">+1</button>
+    <button
+      class="counter__button"
+      (click)="decrease()"
+      [disabled]="cannotDecrease"
+    >
+      -1
+    </button>
+  </div>
+
+  <p>Total: {{ counter }}</p>
+</div>
