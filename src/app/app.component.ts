@@ -12,13 +12,16 @@ import { countSelector } from './ducks/selectors/CounterSelector';
 export class AppComponent {
   count$ = this.store.select(countSelector);
   cannotDecrease$ = this.count$.pipe(map((count) => count <= 0));
+  updateDate?: number;
 
   constructor(private store: Store) {}
 
   increase(): void {
+    this.updateDate = Date.now();
     this.store.dispatch(increase());
   }
   decrease(): void {
+    this.updateDate = Date.now();
     this.store.dispatch(decrease());
   }
 }
