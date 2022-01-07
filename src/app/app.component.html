@@ -5,11 +5,11 @@
     <button
       class="counter__button"
       (click)="decrease()"
-      [disabled]="cannotDecrease"
+      [disabled]="cannotDecrease$ | async"
     >
       -1
     </button>
   </div>
 
-  <p>Total: {{ counter }}</p>
+  <p>Total: {{ count$ | async }}</p>
 </div>

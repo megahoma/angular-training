@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
+import { decrease, increase } from './ducks/actions/CounterAction';
+import { countSelector } from './ducks/selectors/CounterSelector';
 
 @Component({
   selector: 'app-root',
@@ -6,16 +10,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  counter: number = 0;
+  count$ = this.store.select(countSelector);
+  cannotDecrease$ = this.count$.pipe(map((count) => count <= 0));
 
-  get cannotDecrease(): boolean {
-    return this.counter <= 0;
-  }
+  constructor(private store: Store) {}
 
   increase(): void {
-    this.counter++;
+    this.store.dispatch(increase());
   }
   decrease(): void {
-    this.counter--;
+    this.store.dispatch(decrease());
   }
 }
