@@ -9,6 +9,7 @@ import { Task } from '../../types';
 export class TaskItemComponent implements OnInit {
   @Input() task: Task;
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleTask: EventEmitter<Task> = new EventEmitter();
 
   constructor() {}
 
@@ -16,5 +17,8 @@ export class TaskItemComponent implements OnInit {
 
   onDelete(task: Task) {
     this.onDeleteTask.emit(task);
+  }
+  onToggle(task: Task) {
+    this.onToggleTask.emit(task);
   }
 }

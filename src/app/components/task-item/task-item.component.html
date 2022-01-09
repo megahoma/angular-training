@@ -1,4 +1,8 @@
-<div style="border: 1px solid #000; margin: 20px 0 20px 0">
+<div
+  [ngClass]="{ reminder: task.reminder }"
+  style="border: 1px solid #000; margin: 20px 0 20px 0"
+>
   <p>{{ task.text }}</p>
   <button (click)="onDelete(task)">Delete</button>
+  <button (click)="onToggle(task)">Toggle</button>
 </div>

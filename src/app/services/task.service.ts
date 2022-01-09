@@ -3,6 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Task } from '../types';
 
+const httpOptopns = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,11 +18,15 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+    return this.http.get<Task[]>(this.apiUrl, httpOptopns);
   }
 
   delTask(task: Task): Observable<Task> {
     const url = `${this.apiUrl}/${task.id}`;
-    return this.http.delete<Task>(url);
+    return this.http.delete<Task>(url, httpOptopns);
+  }
+  updateTask(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url, task, httpOptopns);
   }
 }
